@@ -46,8 +46,24 @@ Route::get('/registration', function () {
 //     return 'Product id is ' .$id;
 // });
 
+//cart start
 Route::post('/add-to-cart', 'CartController@addToCart');
 Route::get('/mycart', 'CartController@mycart');
 Route::post('/update-cart', 'CartController@updateCart');
 Route::any('/cartItemDelete/{temp_order_row_id}', 'CartController@cartItemDelete');
 Route::any('/cartItemDeleteAll', 'CartController@cartItemDeleteAll');
+//cart end
+
+//checkout start
+Route::get('/checkoutPage', 'CartController@checkoutItems');
+Route::post('/confirm-order', 'CartController@confirmOrder');
+Route::post('/checkout', 'CartController@checkout');
+Route::post('/checkoutwithregistration', 'CartController@checkoutwithregistration');
+//checkout end
+
+
+//registration start
+Route::get('/user-registration', 'Auth\CommonController@showRegistrationForm')->name('user.registration');
+Route::post('/user-registration', 'Auth\CommonController@register')->name('user.registration.submit');
+
+Route::get('/thankyou', 'CartController@thankyou');
