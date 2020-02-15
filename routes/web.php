@@ -67,3 +67,11 @@ Route::get('/user-registration', 'Auth\CommonController@showRegistrationForm')->
 Route::post('/user-registration', 'Auth\CommonController@register')->name('user.registration.submit');
 
 Route::get('/thankyou', 'CartController@thankyou');
+
+Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/admin', 'LoginController@login');
+    Route::post('/postAdminLogin', 'LoginController@postAdminLogin'); 
+    Route::get('/admin/logout', 'LoginController@logout');Route::get('/admin/dashboard', 'DashboardController@index');
+    Route::view('/login', 'admin.login');
+});
+
