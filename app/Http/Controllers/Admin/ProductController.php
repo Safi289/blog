@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 
-class DashboardController extends Controller
+class ProductController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,8 +25,8 @@ class DashboardController extends Controller
      */
     public function index()
     {   
-        $data['count_products'] = DB::table('products')->count(); 
-        // dd($data['count_products']);
-        return view('admin.dashboard', [ 'data'=>$data ] );
+        $data['products_list'] = DB::table('products')->get(); 
+        // dd($data['products_list']);
+        return view('admin.product.product_list', [ 'data'=>$data ] );
     }
 }
